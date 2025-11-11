@@ -1,0 +1,27 @@
+给定一个01串，让他的子序列最长并满足子序列单调不递减，输出整个序列
+void solve() {
+    string s;
+    cin >> s;
+int n=s.size();
+    vector<int>a(n), b(n);
+    for(int i = 0; i < n; i++) {
+        if(s[i] == '0')a[i]++;
+        if(i)a[i] += a[i - 1];
+    }
+    for(int i = n - 1; i >= 0; i--) {
+        if(s[i] == '1')b[i]++;
+        if(i != n - 1)b[i] += b[i + 1];
+    }
+    int l, e = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i] + b[i] > e) {
+            e = a[i] + b[i];
+            l = i;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        if(i <= l && s[i] == '0')cout << i + 1 << " ";
+        if(i > l && s[i] == '1')cout << i + 1 << " ";
+    }
+    cout << endl;
+}
