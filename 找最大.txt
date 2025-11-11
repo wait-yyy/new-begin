@@ -24,4 +24,5 @@ int n=s.size();
         if(i > l && s[i] == '1')cout << i + 1 << " ";
     }
     cout << endl;
+cout<<endl;
 }
